@@ -1,0 +1,7 @@
+#cmakedefine USE_RAY
+#cmakedefine USE_POINT_CLOUD
+#cmakedefine USE_SEG
+#cmakedefine USE_PCL_CLUSTER
+#cmakedefine USE_PCL_FILTER
+#cmakedefine USE_FINAL_PROJECT
+#cmakedefine USE_FINAL_PROJECT_SELF
