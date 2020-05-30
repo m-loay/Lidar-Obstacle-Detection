@@ -26,7 +26,12 @@ configure_file (
   )
 
 #find the pacakges required for PCL
-find_package(PCL 1.2 REQUIRED)
+   
+if(${CMAKE_SYSTEM_NAME} STREQUAL "Linux")
+	find_package(PCL 1.2 REQUIRED)
+else()
+	find_package(PCL 1.10 REQUIRED)
+endif()
 
 #Inclue and Link directores
 include_directories(${PCL_INCLUDE_DIRS})
