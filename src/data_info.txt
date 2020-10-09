@@ -1,0 +1,12 @@
+The Configuration used with the excutable enviornment as follow:
+data_path             = '../src/sensors/data/pcd/'
+filterRes             = '0.15'
+filterMinPoint        = '-20.0,-6.0,-2.0'
+filtermaxPoint        = '30.0,7.0,5.0'
+segDistanceThreshold  = '0.2'
+segMaxIterations      = '50'
+clusterTolerance      = '0.3'
+clusterMinSize        = '10'
+clusterMaxSize        = '800'
+
+../src/sensors/data/pcd/data_1,0.15,-20.0,-6.0,-2.0,30.0,7.0,5.0,0.2,50,0.3,10,800

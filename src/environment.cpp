@@ -254,6 +254,26 @@ std::pair<std::string, struct pcdCfg>
 }
 #endif
 
+/**
+ * @brief check_arguments Checks if the sent arguments are valid.
+ *
+ * @param[in] argc which is number of passed arguments {int}.
+ * 
+ * @param[in] argv which contains the external arguments {char*}.
+ *
+ */
+void check_arguments(int argc, char* argv[], std::string &input)
+{
+  // make sure the user has provided input and output files
+  if (argc == 1)
+  {
+    input = "../src/sensors/data/pcd/data_1,0.15,-20.0,-6.0,-2.0,30.0,7.0,5.0,0.2,50,0.3,10,800";
+  }
+  else
+  {
+    input = argv[1];
+  }
+}
 
 int main (int argc, char** argv)
 {
@@ -264,11 +284,13 @@ int main (int argc, char** argv)
     initCamera(setAngle, viewer);
 
 #if defined(USE_FINAL_PROJECT) || defined(USE_FINAL_PROJECT_SELF)
-    // std::string input = argv[1];
-    std::string input = "../src/sensors/data/pcd/data_1,0.15,-20.0,-6.0,-2.0,30.0,7.0,5.0,0.2,50,0.3,10,800";
+    std::string input;
+    check_arguments(argc,argv,input);
+
     std::cout<<"Input"<<input<<std::endl;
     std::pair<std::string, struct pcdCfg> res = split(input, ',');
     ProcessPointClouds<pcl::PointXYZI>* pointProcessorI = new ProcessPointClouds<pcl::PointXYZI>();
+
     std::vector<boost::filesystem::path> stream = pointProcessorI->streamPcd(res.first);
     pointProcessorI->setPcdCfg(res.second);
     auto streamIterator = stream.begin();

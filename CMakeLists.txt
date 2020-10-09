@@ -4,8 +4,6 @@ project(playback)
 # #set build type to debug and C++ standard to 11
 set(CMAKE_BUILD_TYPE Debug)
 set(CMAKE_CXX_STANDARD 11) 
-set(CXX_FLAGS "-Wall")
-set(CMAKE_CXX_FLAGS, "${CXX_FLAGS}")
 
 # Use simulation  testing mode or Unit testing
 option (USE_RAY "Use Ray Mode" OFF)       
@@ -14,7 +12,7 @@ option (USE_SEG "Use segmentation Mode" OFF)
 option (USE_PCL_CLUSTER "Use Pcl Cluster Mode" OFF)
 option (USE_PCL_FILTER "Use Pcl Cluster Mode" OFF)
 option (USE_FINAL_PROJECT "Use Final Project Mode" OFF)
-option (USE_FINAL_PROJECT_SELF "USE_FINAL_PROJECT_SELF" ON)
+option (USE_FINAL_PROJECT_SELF "USE_FINAL_PROJECT_SELF" OFF)
 
 
 # configure a header file to pass some of the CMake settings
@@ -26,12 +24,12 @@ configure_file (
   )
 
 #find the pacakges required for PCL
-   
 if(${CMAKE_SYSTEM_NAME} STREQUAL "Linux")
 	find_package(PCL 1.2 REQUIRED)
 else()
 	find_package(PCL 1.10 REQUIRED)
 endif()
+
 
 #Inclue and Link directores
 include_directories(${PCL_INCLUDE_DIRS})

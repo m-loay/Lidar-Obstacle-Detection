@@ -17,67 +17,104 @@ In this course we will be talking about sensor fusion, whch is the process of ta
 
 ## Other Important Dependencies
 
+### For Linuex & MAC
 * cmake >= 3.5
   * All OSes: [click here for installation instructions](https://cmake.org/install/)
 
 * make >= 4.1 (Linux, Mac), 3.81 (Windows)
   * Linux: make is installed by default on most Linux distros
   * Mac: [install Xcode command line tools to get make](https://developer.apple.com/xcode/features/)
-  * Windows: [Click here for installation instructions](http://gnuwin32.sourceforge.net/packages/make.htm)
 
 * gcc/g++ >= 5.4
   * Linux: gcc / g++ is installed by default on most Linux distros
   * Mac: same deal as make - [install Xcode command line tools](https://developer.apple.com/xcode/features/)
-  * Windows: recommend using [MinGW](http://www.mingw.org/)
 
 * libpcl >= 1.6
   * Linux: can be installed using `sudo apt install libpcl-dev`
-  * Windows: recommend using [libpcl](http://www.pointclouds.org/downloads/windows.html).
   * MAC:
         
 		1. install [homebrew](https://brew.sh/)
    
-        2. update homebrew 
+        1. update homebrew 
         	```bash
         	$> brew update
         	```
 
-        3. add  homebrew science [tap](https://docs.brew.sh/Taps) 
+        2. add  homebrew science [tap](https://docs.brew.sh/Taps) 
         	```bash
         	$> brew tap brewsci/science
         	```
 
-        4. view pcl install options
+        3. view pcl install options
         	```bash
         	$> brew options pcl
         	```
 
-        5. install PCL 
+        4. install PCL 
         	```bash
         	$> brew install pcl
         	```
 
-## Basic Build Instructions
+### For Windows
+* cmake >= 3.5
+  * All OSes: [click here for installation instructions](https://cmake.org/install/)
 
+* VS >= 2017 and PCL 1.9.1
+  * for both : [click here for installation instructions](http://unanancyowen.com/en/pcl191/)
+
+or 
+
+* VS >= 2019 and PCL 1.10.1
+  * VS2019 : [click here for installation instructions](https://visualstudio.microsoft.com/vs/)
+  * PCL 1.10.1 [click here for installation instructions](https://github.com/PointCloudLibrary/pcl/releases/tag/pcl-1.10.1)
+
+* Setup steps:
+1. Click“PCL-1.xx.0-AllInOne-msvc20xx-win64.exe”Install
+2. In the second step, select "Add PCL to the System Path for All Users"
+3. Choose the default installation folder: "C:\Program Files\PCL 1.xx.0"
+4. The following direct default installation, and finally pops out "The file name is too long and the installation 
+program cannot modify it" when the prompt box is selected, click OK and continue the installation.
+5. Choose the default installation folder: "C:\Program Files\PCL 1.xx.0"
+[At this time, the OpenNI2 being installed will automatically switch to the "C:\Program Files\OpenNI2" 
+folder for installation. It doesn't matter, it's all normal.]
+6. After the installation is complete, add all the contents of the folder obtained after decompressing 
+PCL-1.xx.0-pdb-msvc20xx-win64.zip to your PCL installation bin directory, such as: C:\Program Files\PCL 1.xx.0\bin.
+This is the end of the installation.
+7.Add all (PCL,OpenNI2,3rdParty/VTK,3rdParty/FLANN,3rdParty/Qhull,3rdParty/Qhull,Boost/lib) 
+bin folder to enviornment path. 
+
+
+ 
+
+## Basic Build Instructions
 - Clone this repo.
-- Ray Mode: `python build.py --clean --run --ray_mode`
-- Point Cloud Mode: `python build.py --clean --run --point_cloud_mode`
-- Segmentation Mode: `python build.py --clean --run --seg_mode`
-- Ransac 2D Mode: `python build.py --clean --run --ransac_2d_mode` [Quiz of RANSAC 2D]
-- Ransac 3D Mode: `python build.py --clean --run --ransac_3d_mode` [Quiz of RANSAC 3D]
-- PCL Cluster Mode: `python build.py --clean --run --pcl_cluster_mode`
-- Self Cluster Mode : `python build.py --clean --run --self_cluster_mode` [Quiz of CLSUTER 2D]
-- Self Cluster/RANSAC Mode:`python build.py --clean --run --self_cluster_ransc_mode`
-- Pcl Filter Mode: `python build.py --clean --run --pcl_filter_mode`
-- Final Project Mode : `python build.py --clean --run --final_project_mode`[Final Project Delivery]
-- Final Project Self Mode: `python build.py --clean --run --final_project_self_mode`
+
+### Main Enviorenment Selected Modes
+- Create build Folder `mkdir build`, `cd build`
+- Ray Mode: `cmake .. -DUSE_RAY=ON`
+- Point Cloud Mode: `cmake .. -DUSE_POINT_CLOUD=ON`
+- Segmentation Mode: `cmake .. -DUSE_SEG=ON`
+- PCL Cluster Mode: `cmake .. -DUSE_PCL_CLUSTER=ON`
+- Self Cluster/RANSAC Mode:`cmake .. -DUSE_SELF_CLUSTER_RANSAC=ON`
+- Pcl Filter Mode: `cmake .. -DUSE_PCL_FILTER=ON`
+
+### Final Project
+- Final Project Mode : `cmake .. -DUSE_FINAL_PROJECT=ON`[Final Project Delivery]
+- Final Project Self Mode: `cmake .. -DUSE_FINAL_PROJECT_SELF=ON`
   [Final Project Delivery my own implementation for RANSAC and Clustring]
-  Note: 
-  1. `--data2` can be added to the above command to run data set 2.
-  2. if the above project is build once can be used as follow
-     `python build.py --run --final_project_self_mode --data1` or
-     `python build.py --run --final_project_self_mode --data2`.
-     Parametrs can be changed from build.py (no need for build).
+- Run the project using required PCL configuration and dataset 
+  * Linux: `./environment ../src/sensors/data/pcd/data_1,0.15,-20.0,-6.0,-2.0,30.0,7.0,5.0,0.2,50,0.3,10,800`
+  * Windows: `environment.exe ../src/sensors/data/pcd/data_1,0.15,-20.0,-6.0,-2.0,30.0,7.0,5.0,0.2,50,0.3,10,800`
+  This works with GCC. If VS is used , make environment to be start up project , then put the above line 
+  in debugger arguments then run it on VS(start instance debug).
+  Enviornment Configuration are explined in data_info.
+
+### Quiz
+- Navigate to `cd src/quiz`
+- Create build Folder `mkdir build`, `cd build`
+- Ransac 2D Mode: `cmake .. -USE_RANSAC_2D=ON` [Quiz of RANSAC 2D]
+- Ransac 3D Mode: `cmake .. -DUSE_RANSAC_3D=ON` [Quiz of RANSAC 3D]
+- Self Cluster Mode : `cmake .. -DUSE_SELF_CLUSTER=ON` [Quiz of CLSUTER 2D]
 
 
 
