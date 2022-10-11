@@ -5,12 +5,12 @@ project(playback)
 set(CMAKE_CXX_STANDARD 11) 
 
 # Use simulation  testing mode or Unit testing
-option (USE_RAY "Use Ray Mode" ON)
+option (USE_RAY "Use Ray Mode" OFF)
 option (USE_POINT_CLOUD "Use Point Cloud Mode" OFF)
 option (USE_SEG "Use segmentation Mode" OFF)
 option (USE_PCL_CLUSTER "Use Pcl Cluster Mode" OFF)
 option (USE_PCL_FILTER "Use Pcl Cluster Mode" OFF)
-option (USE_FINAL_PROJECT "Use Final Project Mode" OFF)
+option (USE_FINAL_PROJECT "Use Final Project Mode" ON)
 option (USE_FINAL_PROJECT_SELF "USE_FINAL_PROJECT_SELF" OFF)
 
 
