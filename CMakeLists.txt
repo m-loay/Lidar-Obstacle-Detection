@@ -2,11 +2,10 @@ cmake_minimum_required(VERSION 2.8 FATAL_ERROR)
 project(playback)
 
 # #set build type to debug and C++ standard to 11
-set(CMAKE_BUILD_TYPE Debug)
 set(CMAKE_CXX_STANDARD 11) 
 
 # Use simulation  testing mode or Unit testing
-option (USE_RAY "Use Ray Mode" OFF)       
+option (USE_RAY "Use Ray Mode" ON)
 option (USE_POINT_CLOUD "Use Point Cloud Mode" OFF)
 option (USE_SEG "Use segmentation Mode" OFF)
 option (USE_PCL_CLUSTER "Use Pcl Cluster Mode" OFF)
